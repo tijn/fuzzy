@@ -1,0 +1,9 @@
+name: fuzzy
+version: 0.1.0
+
+authors:
+  - Tijn Schuurmans <tijn@tijnschuurmans.nl>
+
+crystal: 0.24.2
+
+license: MIT
