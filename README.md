@@ -19,15 +19,19 @@ You can use a `Fuzzy::Pattern` like a `Regex`. It supports a similar interface:
 ```crystal
 require "fuzzy"
 
-pattern = Fuzzy::Pattern.new("needle") # in a haystack
+pattern = Fuzzy::Pattern.new("needle") # a needle in a haystack
 
 # see if it matches a string
 pattern.match? "this needle cushion" # => true
+pattern.match? "foo" # => false
+
 pattern =~ "that needle cushion" # => true
+pattern =~ "bar" # => false
 
 # see which characters are matched
 pattern.match "those needle cushions" # => [6, 7, 8, 9, 10, 11]
 Fuzzy::Pattern.new("foo").match("reforestation") # => [2, 3, 11]
+Fuzzy::Pattern.new("foo").match("bar") # => nil
 
 # case equality
 STDIN.each_line do |line|
@@ -65,7 +69,7 @@ Unicode:
 char_reader   6.41M (156.13ns) (± 2.33%)       fastest
 ```
 
-I decided to keep the naive algorithm as the default for now.
+I decided to keep the naive algorithm for now. I might try to switch to a hybrid solution (naive and char_reader) in the future.
 
 ## Contributing
 
